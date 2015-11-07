@@ -21,16 +21,6 @@ function cloneTreeMirror() {
 						new Node(10))));
 	})(root);
 	
-	function preOrder(pRoot)
-	{
-		if (!pRoot)
-			return;
-		
-		console.log(pRoot.value);
-		preOrder(pRoot.leftChild);
-		preOrder(pRoot.rightChild);
-	};
-	
 	preOrder(root);
 	console.log("################################");
 	

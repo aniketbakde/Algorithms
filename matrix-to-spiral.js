@@ -1,14 +1,15 @@
 function matrixToSpiral() {
 	var matrix = [];
-
-	(function (pMat) {
+	var rows = 5,
+	columns = 5;
+	(function (pMat, pRows, pCols) {
 		var ctr = 0,
 		i,
 		j;
-		for (i = 1; i <= 5; i++) {
+		for (i = 1; i <= pRows; i++) {
 			var a = [];
 			var str = "";
-			for (var j = 0; j < 5; j++) {
+			for (var j = 0; j < pCols; j++) {
 				a.push(ctr + j);
 				str += " " + (ctr + j);
 			}
@@ -16,62 +17,53 @@ function matrixToSpiral() {
 			matrix.push(a);
 			console.log(str);
 		}
-	})(matrix);
+	})(matrix, rows, columns);
 
 	(function (pMat) {
 		var xMin = -1,
 		xMax = pMat.length,
 		yMin = -1;
 		yMax = pMat[0].length;
-		var Direction = {
-			right : 0,
-			down : 1,
-			left : 2,
-			up : 3
-		};
-		var x = xMin + 1,
-		y = yMin + 1,
-		dir = Direction.right;
+		var numElements = xMax * yMax;
+		var x = 0,
+		y = 0;
+		var dx = 0,
+		dy = 1;
 
 		var k = 0;
-		while (true) {
-			if (dir === Direction.right) {
-				console.log(pMat[x][y++]);
-			} else if (dir === Direction.down) {
-				console.log(pMat[x++][y]);
-			} else if (dir === Direction.left) {
-				console.log(pMat[x][y--]);
-			} else if (dir === Direction.up) {
-				console.log(pMat[x--][y]);
-			}
+		while (numElements-- > 0) {
+			console.log(pMat[x][y]);
+			x += dx;
+			y += dy;
 
 			if (y === yMax) {
-				dir = Direction.down;
+				dx = 1;
+				dy = 0;
 				xMin++;
 				x++;
 				y--;
 			}
 			if (x === xMax) {
-				dir = Direction.left;
+				dx = 0;
+				dy = -1;
 				yMax--;
 				x--;
 				y--;
 			}
 			if (y === yMin) {
-				dir = Direction.up;
-				xMax--;
+				dx = -1;
+				dy = 0
+					xMax--;
 				x--;
 				y++;
 			}
 			if (x === xMin) {
-				dir = Direction.right;
+				dx = 0;
+				dy = 1;
 				yMin++;
 				x++;
 				y++;
 			}
-
-			if (xMin >= xMax || yMin >= yMax)
-				break;
 		}
 
 	})(matrix);

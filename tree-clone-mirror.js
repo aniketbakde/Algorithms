@@ -1,12 +1,4 @@
 function cloneTreeMirror() {
-	function Node(pVal, pLeftChild, pRightChild) {
-		return {
-			value : pVal,
-			leftChild : (pLeftChild ? pLeftChild : null),
-			rightChild : (pRightChild ? pRightChild : null),
-		}
-	};
-
 	var root = null;
 
 	(function buildTree(pRoot) {
